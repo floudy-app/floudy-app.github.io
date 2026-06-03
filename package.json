@@ -6,18 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "predeploy": "npm run build && node scripts/copy-404.js",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "dependencies": {
+  "dependencies":
+  {
+    "@microsoft/signalr": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.0",
-    "recharts": "^2.12.0",
-    "@microsoft/signalr": "^8.0.0"
+    "recharts": "^2.12.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",

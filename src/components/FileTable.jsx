@@ -18,7 +18,7 @@ export default function FileTable({ files, selected, onSelect, onDelete, onRenam
 {
   const { currentPage } = useApp();
 
-  const [renaming, setRenaming] = useState(null); // file id being renamed
+  const [renaming, setRenaming] = useState(null);
   const [nameVal, setNameVal]   = useState('');
   const [nameErr, setNameErr]   = useState('');
 

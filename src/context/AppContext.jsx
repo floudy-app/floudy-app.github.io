@@ -26,7 +26,6 @@ export function AppProvider({ children })
   const onForceLogoutRef = useRef(null);
   const inactivityTimerRef = useRef(null);
 
-  // session persistence
   useEffect(() => {
     if (user) { sessionStorage.setItem('fl_user', JSON.stringify(user)); } 
     else { sessionStorage.removeItem('fl_user'); }
@@ -47,7 +46,7 @@ export function AppProvider({ children })
     const handler = () => resetInactivityTimer();
 
     events.forEach(e => window.addEventListener(e, handler, { passive: true }));
-    resetInactivityTimer(); // Start the timer
+    resetInactivityTimer();
 
     return () => {
       events.forEach(e => window.removeEventListener(e, handler));
@@ -55,7 +54,6 @@ export function AppProvider({ children })
     };
   }, [user, resetInactivityTimer]);
 
-  // login
   const login = useCallback((userData) => 
   {
     setUser(userData);
@@ -63,7 +61,6 @@ export function AppProvider({ children })
     trackActivity('login');
   }, []);
 
-  // signal r
   useEffect(() =>
   {
     if (!user) return;
@@ -95,7 +92,6 @@ export function AppProvider({ children })
     onForceLogoutRef.current = handler;
   }, []);
 
-  // data sync
   const syncStats = useCallback(async () =>
   {
     let types = await getTypeStats();
@@ -144,14 +140,12 @@ export function AppProvider({ children })
     await syncFiles(page);
   });
 
-  // logout
   const performLogout = useCallback(() => 
   {
     const saved = sessionStorage.getItem('fl_user');
     const currentUser = saved ? JSON.parse(saved) : null;
 
     if (currentUser?.token) {
-      // Fire-and-forget backend token invalidation
       fetch(`${API_BASE}/api/auth/logout`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${currentUser.token}` }
@@ -175,7 +169,6 @@ export function AppProvider({ children })
 
   const logout = performLogout;
 
-  // ── File operations ──────────────────────────────────────────────
   const upload = useCallback(async (rawFiles, autoDate = true) => 
   {
     const records = Array.from(rawFiles).map((f, i) => buildRecord(f, i, autoDate));

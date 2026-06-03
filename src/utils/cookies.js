@@ -15,7 +15,6 @@ export function deleteCookie(name)
   document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
 }
 
-// append to a rolling activity log (max 20 entries)
 export function trackActivity(action) 
 {
   try 

@@ -2,9 +2,12 @@
   "name": "floudy",
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://floudy-app.github.io",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "predeploy": "npm run build && node scripts/copy-404.js",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -23,7 +26,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/node": "^25.5.2",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "gh-pages": "^6.3.0",
     "jsdom": "^24.0.0",
     "vitest": "^1.6.1"
   }

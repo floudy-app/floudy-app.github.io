@@ -25,18 +25,16 @@ export default function Recovery()
 
   const [input, setInput] = useState('');
   const [err, setErr] = useState('');
-  const [status, setStatus] = useState(''); // '' | 'checking' | 'sending' | 'sent' | 'error'
+  const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
 
-  // Password reset specific states
-  const [tokenValid, setTokenValid] = useState(null); // null = verifying, true = valid, false = invalid/expired
-  const [tokenError, setTokenError] = useState(''); // '' | 'expired' | 'error'
+  const [tokenValid, setTokenValid] = useState(null);
+  const [tokenError, setTokenError] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [resetError, setResetError] = useState('');
-  const [resetStatus, setResetStatus] = useState(''); // '' | 'submitting' | 'success' | 'expired'
+  const [resetStatus, setResetStatus] = useState('');
 
-  // If we land with ?user=<value>, auto-trigger the send
   useEffect(() => {
     if (userParam) {
       setStatus('sending');
@@ -52,7 +50,6 @@ export default function Recovery()
     }
   }, [userParam]);
 
-  // If we land with ?reset=<token>, validate it on mount
   useEffect(() => {
     if (resetParam) {
       validateRecoveryToken(resetParam)
@@ -85,7 +82,6 @@ export default function Recovery()
 
     try {
       await checkRecovery(input);
-      // Redirect with user param to trigger the send
       nav(`/recovery?user=${encodeURIComponent(input)}`);
     } catch (ex) {
       setStatus('error');
@@ -281,7 +277,6 @@ export default function Recovery()
     );
   }
 
-  // ── Default State (username/email entry form) ──────────────
   return (
     <div className="auth page-in">
       <ShieldBg />

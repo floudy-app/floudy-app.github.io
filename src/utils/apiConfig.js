@@ -1,6 +1,4 @@
-const hostname = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
-
-export const API_BASE = `http://${hostname}:5057`;
+export const API_BASE = 'https://floudy-backend.onrender.com';
 
 export function getAuthHeaders(extraHeaders = {}) 
 {

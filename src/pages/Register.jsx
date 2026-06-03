@@ -7,7 +7,7 @@ import '../styles/auth.css';
 
 function PersonBg() {
   return (
-    <img src="resources/svg/person.svg" className="auth__bg-icon"/>
+    <img src="/resources/svg/person.svg" className="auth__bg-icon" alt="" />
   );
 }
 

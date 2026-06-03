@@ -9,7 +9,7 @@ import '../styles/auth.css';
 function KeyBg() 
 {
   return (
-    <img src="resources/svg/key.svg" className="auth__bg-icon"/>
+    <img src="/resources/svg/key.svg" className="auth__bg-icon" alt="" />
   );
 }
 
